@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation & Appointment Management</title>
+    <link rel="stylesheet" href="notification.css">
+</head>
+<body>
+    <header>
+        <h1>NOTIFICATION</h1>
+        <p>Organize camps, manage inventory, book appointments, and handle notifications</p>
+    </header>
+    <nav>
+
+        <a href="#" onclick="showSection('notifications')">Notifications</a>
+    </nav>
+    <div class="container">
+        <div id="home" class="section active">
+            <h2>Welcome</h2>
+            <p>Use this system to organize blood donation camps, track blood bank inventories, book appointments, and manage notifications. Navigate using the menu above.</p>
+        </div>
+        <div id="camps" class="section">
+            <h2>Blood Donation Camps</h2>
+            <form id="campForm">
+                <label for="campName">Camp Name:</label>
+                <input type="text" id="campName" required>
+                
+                <label for="campLocation">Location:</label>
+                <input type="text" id="campLocation" required>
+                
+                <label for="campDate">Date:</label>
+                <input type="date" id="campDate" required>
+                
+                <label for="campOrganizer">Organizer:</label>
+                <input type="text" id="campOrganizer" required>
+                
+                <button type="submit">Add Camp</button>
+            </form>
+            <h3>Existing Camps</h3>
+            <ul id="campList"></ul>
+        </div>
+        <div id="banks" class="section">
+            <h2>Blood Bank Inventory</h2>
+            <form id="bankForm">
+                <label for="hospitalName">Hospital Name:</label>
+                <input type="text" id="hospitalName" required>
+                
+                <label for="bloodType">Blood Type:</label>
+                <select id="bloodType" required>
+                    <option value="">Select Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+                
+                <label for="quantity">Quantity (units):</label>
+                <input type="number" id="quantity" min="0" required>
+                
+                <button type="submit">Add/Update Inventory</button>
+            </form>
+            <h3>Current Inventory</h3>
+            <ul id="bankList"></ul>
+        </div>
+        <div id="appointments" class="section">
+            <h2>Appointments</h2>
+            <div class="sub-nav">
+                <button onclick="showAppointmentType('book')" class="active">Book Appointment</button>
+                <button onclick="showAppointmentType('suggest')">Doctor Suggest Time</button>
+                <button onclick="showAppointmentType('prescribe')">Doctor Prescribe</button>
+            </div>
+            <div id="bookForm" class="appointment-form active">
+                <h3>Book Appointment</h3>
+                <form id="bookAppointmentForm">
+                    <label for="patientName">Patient Name:</label>
+                    <input type="text" id="patientName" required>
+                    
+                    <label for="doctorName">Doctor Name:</label>
+                    <input type="text" id="doctorName" required>
+                    
+                    <label for="appointmentDate">Preferred Date:</label>
+                    <input type="date" id="appointmentDate" required>
+                    
+                    <button type="submit">Book Appointment</button>
+                </form>
+            </div>
+            <div id="suggestForm" class="appointment-form">
+                <h3>Suggest Time (Doctor)</h3>
+                <form id="suggestTimeForm">
+                    <label for="suggestPatient">Patient Name:</label>
+                    <input type="text" id="suggestPatient" required>
+                    
+                    <label for="suggestedTime">Suggested Date & Time:</label>
+                    <input type="datetime-local" id="suggestedTime" required>
+                    
+                    <button type="submit">Suggest Time</button>
+                </form>
+            </div>
+            <div id="prescribeForm" class="appointment-form">
+                <h3>Prescribe (Doctor)</h3>
+                <form id="prescribeForm">
+                    <label for="prescribePatient">Patient Name:</label>
+                    <input type="text" id="prescribePatient" required>
+                    
+                    <label for="prescription">Prescription:</label>
+                    <textarea id="prescription" required></textarea>
+                    
+                    <button type="submit">Send Prescription</button>
+                </form>
+            </div>
+            <h3>Appointment History</h3>
+            <ul id="appointmentList"></ul>
+        </div>
+        <div id="notifications" class="section">
+            <h2>Notifications</h2>
+            <div class="sub-nav">
+                <button onclick="showNotificationType('doctor')" class="active">Doctor Notifications</button>
+                <button onclick="showNotificationType('user')">User Notifications</button>
+            </div>
+            <div id="doctorForm" class="notification-form active">
+                <h3>Doctor Notifications</h3>
+                <ul id="doctorNotificationList"></ul>
+            </div>
+            <div id="userForm" class="notification-form">
+                <h3>User Notifications</h3>
+                <ul id="userNotificationList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="firebase-auth.js"></script>
+<script>window.firebaseAuth.requireAuth();</script>
+<script src="notification.js"></script>
+</body>
+</html>

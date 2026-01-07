@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Donation Management</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f9f9ff 100%);
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0a036d, #4b4bc1);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #0a036d;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 18px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffeb3b;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 25px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #d32f2f;
+      font-size: 1.6rem;
+      border-bottom: 2px solid #d32f2f;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    form {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #d32f2f;
+      color: white;
+      font-weight: 600;
+      border: none;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b71c1c;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    li {
+      background-color: #f9f9f9;
+      margin-bottom: 10px;
+      padding: 12px;
+      border-left: 5px solid #d32f2f;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .blood-img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      max-height: 300px;
+    }
+
+    .sub-section {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #fafafa;
+      border-radius: 8px;
+    }
+
+    .sub-section h3 {
+      color: #333;
+      border-bottom: 2px solid #d32f2f;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #0a036d;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Blood Donation Management System</h1>
+    <p>Organize blood donation camps and manage blood bank inventory efficiently</p>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showSection('home')">🏠 Home</a>
+    <a href="#" onclick="showSection('camps')">🩸 Camps</a>
+    <a href="#" onclick="showSection('banks')">🏥 Blood Banks</a>
+  </nav>
+
+  <div class="container">
+    <!-- HOME SECTION -->
+    <div id="home" class="section active">
+      <img src="https://img.freepik.com/free-vector/human-blood-donate-white-background_1308-110835.jpg?semt=ais_hybrid&w=740&q=80" alt="Blood Donation" class="blood-img">
+      <h2>Welcome</h2>
+      <p>Use this system to organize donation drives and maintain accurate blood bank records. Navigate using the menu above.</p>
+
+      <div class="sub-section">
+        <h3>Upcoming Blood Donation Camps</h3>
+        <ul id="homeCampList"></ul>
+      </div>
+
+      <div class="sub-section">
+        <h3>Available Blood Bank Stock</h3>
+        <ul id="homeBankList"></ul>
+      </div>
+    </div>
+
+    <!-- BLOOD DONATION CAMPS SECTION -->
+    <div id="camps" class="section">
+      <h2>Blood Donation Camps</h2>
+      <form id="campForm">
+        <label for="campName">Camp Name:</label>
+        <input type="text" id="campName" required>
+
+        <label for="campLocation">Location:</label>
+        <input type="text" id="campLocation" required>
+
+        <label for="campDate">Date:</label>
+        <input type="date" id="campDate" required>
+
+        <label for="campOrganizer">Organizer:</label>
+        <input type="text" id="campOrganizer" required>
+
+        <button type="submit">Add Camp</button>
+      </form>
+      <h3>Existing Camps</h3>
+      <ul id="campList"></ul>
+    </div>
+
+    <!-- BLOOD BANK INVENTORY SECTION -->
+    <div id="banks" class="section">
+      <h2>Blood Bank Inventory</h2>
+      <form id="bankForm">
+        <label for="hospitalName">Hospital Name:</label>
+        <input type="text" id="hospitalName" required>
+
+        <label for="bloodType">Blood Type:</label>
+        <select id="bloodType" required>
+          <option value="">Select Type</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
+        <label for="quantity">Quantity (units):</label>
+        <input type="number" id="quantity" min="0" required>
+
+        <button type="submit">Add / Update Inventory</button>
+      </form>
+      <h3>Current Inventory</h3>
+      <ul id="bankList"></ul>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Blood Donation Management System | All Rights Reserved
+  </footer>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    function loadData() {
+      const camps = JSON.parse(localStorage.getItem('camps')) || [];
+      const banks = JSON.parse(localStorage.getItem('banks')) || [];
+      displayCamps(camps);
+      displayBanks(banks);
+      updateHome(camps, banks);
+    }
+
+    function displayCamps(camps) {
+      const campList = document.getElementById('campList');
+      campList.innerHTML = '';
+      camps.forEach(camp => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${camp.name}</strong> - ${camp.location} on ${camp.date} (Organizer: ${camp.organizer})`;
+        campList.appendChild(li);
+      });
+    }
+
+    function displayBanks(banks) {
+      const bankList = document.getElementById('bankList');
+      bankList.innerHTML = '';
+      banks.forEach(bank => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${bank.hospital}</strong> - ${bank.type}: ${bank.quantity} units`;
+        bankList.appendChild(li);
+      });
+    }
+
+    function updateHome(camps, banks) {
+      const homeCampList = document.getElementById('homeCampList');
+      const homeBankList = document.getElementById('homeBankList');
+      homeCampList.innerHTML = camps.length ? '' : '<li>No camps added yet.</li>';
+      homeBankList.innerHTML = banks.length ? '' : '<li>No inventory added yet.</li>';
+
+      camps.forEach(camp => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${camp.name}</strong> - ${camp.location} on ${camp.date}`;
+        homeCampList.appendChild(li);
+      });
+
+      banks.forEach(bank => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${bank.hospital}</strong> - ${bank.type}: ${bank.quantity} units`;
+        homeBankList.appendChild(li);
+      });
+    }
+
+    document.getElementById('campForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = campName.value;
+      const location = campLocation.value;
+      const date = campDate.value;
+      const organizer = campOrganizer.value;
+
+      const camps = JSON.parse(localStorage.getItem('camps')) || [];
+      camps.push({ name, location, date, organizer });
+      localStorage.setItem('camps', JSON.stringify(camps));
+      displayCamps(camps);
+      updateHome(camps, JSON.parse(localStorage.getItem('banks')) || []);
+      this.reset();
+    });
+
+    document.getElementById('bankForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const hospital = hospitalName.value;
+      const type = bloodType.value;
+      const quantity = quantityInput.value;
+
+      const banks = JSON.parse(localStorage.getItem('banks')) || [];
+      const existingIndex = banks.findIndex(b => b.hospital === hospital && b.type === type);
+      if (existingIndex !== -1) banks[existingIndex].quantity = quantity;
+      else banks.push({ hospital, type, quantity });
+
+      localStorage.setItem('banks', JSON.stringify(banks));
+      displayBanks(banks);
+      updateHome(JSON.parse(localStorage.getItem('camps')) || [], banks);
+      this.reset();
+    });
+
+    const quantityInput = document.getElementById('quantity');
+    window.onload = loadData;
+  </script>
+</body>
+</html>

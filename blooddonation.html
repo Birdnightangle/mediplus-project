@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Donation Management System</title>
+  <link rel="stylesheet" href="blooddonation.css">
+   
+</head>
+<body>
+  <header>
+    <h1>Blood Donation Management System</h1>
+    <p>Organize camps and manage blood bank inventory</p>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showTab('home')">Home</a>
+    <a href="#" onclick="showTab('camp')">Blood Donation Camps</a>
+    <a href="#" onclick="showTab('inventory')">Blood Bank Inventory</a>
+  </nav>
+
+  <div class="container">
+    <!-- Home Tab -->
+    <div id="home" class="tab active">
+      <img src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png" class="small">
+      <h2>Welcome</h2>
+      <p>Use this system to organize blood donation camps and manage blood bank stock.</p>
+
+      <div class="section">
+        <h3 style="color:#b71c1c;">Upcoming Blood Donation Camps</h3>
+        <div id="campList" class="data-list">No camps added yet.</div>
+      </div>
+
+      <div class="section">
+        <h3 style="color:#b71c1c;">Available Blood Bank Stock</h3>
+        <div id="inventoryList" class="data-list">No inventory added yet.</div>
+      </div>
+    </div>
+
+    <!-- Blood Donation Camp Tab -->
+    <div id="camp" class="tab">
+      <img src="https://cdn-icons-png.flaticon.com/512/2966/2966314.png" class="small">
+      <h2>Blood Donation Camps</h2>
+      <form id="campForm">
+        <input type="text" id="campName" placeholder="Camp Name" required><br>
+        <input type="text" id="location" placeholder="Location" required><br>
+        <input type="date" id="date" required><br>
+        <input type="text" id="organizer" placeholder="Organizer" required><br>
+        <button type="submit">Add Camp</button>
+      </form>
+      <div class="section">
+        <h3>Existing Camps</h3>
+        <div id="existingCamps" class="data-list">No camps added yet.</div>
+      </div>
+    </div>
+
+    <!-- Blood Bank Inventory Tab -->
+    <div id="inventory" class="tab">
+      <img src="https://cdn-icons-png.flaticon.com/512/938/938050.png" class="small">
+      <h2>Blood Bank Inventory</h2>
+      <form id="inventoryForm">
+        <input type="text" id="hospitalName" placeholder="Hospital Name" required><br>
+        <select id="bloodType" required>
+          <option value="">Select Blood Type</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+        </select><br>
+        <input type="number" id="quantity" placeholder="Quantity (units)" required><br>
+        <button type="submit">Add / Update Inventory</button>
+      </form>
+      <div class="section">
+        <h3>Current Inventory</h3>
+        <div id="existingInventory" class="data-list">No inventory added yet.</div>
+      </div>
+    </div>
+  </div>
+  <script src="blooddonation.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical Health Portal — Report Analyzer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+</head>
+
+<body class="bg-gradient-to-br from-sky-50 to-white text-gray-900 antialiased font-sans">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 shadow-md">
+    <div class="w-full bg-cyan-700 text-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2 shrink-0">
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/15">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+            </svg>
+          </span>
+          <span class="text-lg font-semibold tracking-wide">Medical Health</span>
+        </a>
+
+        <!-- Login Button Added -->
+        <a href="login.html" class="btn-outline text-sm">Login</a>
+      </div>
+    </div>
+
+    <div class="w-full bg-cyan-800 text-cyan-50">
+      <nav class="max-w-7xl mx-auto px-4 md:px-6 py-2">
+        <ul class="flex flex-wrap justify-evenly gap-3 text-sm md:text-[15px] font-medium">
+          <li><a href="consultation.html" class="hover:text-white">Consultation</a></li>
+          <li><a href="history.html" class="hover:text-white">History</a></li>
+          <li><a href="prescription.html" class="hover:text-white">Prescription</a></li>
+          <li><a href="organdonation.html" class="hover:text-white">Organ Donation</a></li>
+          <li><a href="blooddonation.html" class="hover:text-white">Blood Donation</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="bg-gradient-to-br from-cyan-50 to-white py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight text-gray-900">
+          Upload your <span class="text-cyan-700">MRI / X-Ray</span> report for AI analysis
+        </h1>
+        <p class="mt-4 text-lg text-gray-700">Get instant, accurate, AI-based health insights and precautionary advice.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#upload" class="btn-primary">Upload Report</a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <img src="https://img.freepik.com/free-vector/hand-drawn-medical-sticker-set_52683-85884.jpg" class="rounded-xl shadow-md w-full h-full">
+        <img src="https://cdn-icons-png.flaticon.com/512/2966/2966485.png" class="rounded-xl shadow-md w-full h-full">
+      </div>
+    </div>
+  </section>
+
+  <!-- UPLOAD FORM -->
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-12">
+    <section id="upload" class="grid lg:grid-cols-3 gap-8">
+      <div class="card p-6 lg:col-span-2">
+        <h2 class="text-2xl font-bold mb-4 text-cyan-800">Upload your MRI / X-Ray report</h2>
+        <form id="uploadForm" class="space-y-5">
+          <!-- Simplified file input -->
+          <input id="fileUpload" type="file" accept=".jpg,.jpeg,.png,.pdf,.dcm" class="w-full p-3 border-2 border-cyan-400 rounded-lg">
+          <div id="previewBox" class="mt-2 border-2 border-dashed border-cyan-200 rounded-lg p-3 flex items-center gap-3">
+            <div class="w-20 h-24 bg-gray-100 flex items-center justify-center rounded overflow-hidden">
+              <img id="previewImg" class="w-full h-full object-cover hidden" alt="preview" />
+              <canvas id="previewCanvas" class="hidden"></canvas>
+              <div id="previewPlaceholder" class="text-xs text-gray-500">Preview</div>
+            </div>
+            <div class="text-xs text-gray-600">
+              <div id="previewName"></div>
+              <div id="previewInfo"></div>
+            </div>
+          </div>
+          <button id="uploadBtn" type="submit" class="btn-primary w-full">Upload & Analyze</button>
+        </form>
+      </div>
+
+      <!-- Notifications -->
+      <aside class="card p-6">
+        <h3 class="font-semibold text-lg text-cyan-700 mb-3">🩸 Notifications</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-800">
+          <li>Upcoming blood donation drive</li>
+          <li>Nearby free health check-up camp</li>
+          <li>Discount on first online consultation</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <!-- HISTORY -->
+  <section id="history" class="max-w-7xl mx-auto px-4 md:px-6 pb-12">
+    <div class="card p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-lg text-cyan-700 flex items-center gap-2">
+          <svg class="w-5 h-5 text-cyan-700" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3a9 9 0 1 0 9 9h-2a7 7 0 1 1-7-7V3l4 3-4 3V6Z"/></svg>
+          Analysis History
+        </h3>
+        <div class="flex gap-2">
+          <button id="refreshHistory" class="btn-outline text-cyan-700 border-cyan-700">Refresh</button>
+          <button id="clearHistory" class="btn-outline text-cyan-700 border-cyan-700">Clear</button>
+        </div>
+      </div>
+      <ul id="historyList" class="mt-4 space-y-3"></ul>
+    </div>
+  </section>
+
+  <!-- POPUP -->
+  <div id="popupOverlay" class="flex">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-[90%] max-w-2xl relative">
+      <div id="analyzingView">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-cyan-600 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          <h2 class="text-2xl font-bold text-cyan-700">Analyzing report...</h2>
+        </div>
+        <p id="fileMeta" class="text-gray-600 mt-2"></p>
+        <div class="mt-6">
+          <div class="w-full h-3 bg-cyan-100 rounded-full overflow-hidden">
+            <div id="progressBar" class="h-3 bg-cyan-600 rounded-full" style="width: 0%"></div>
+          </div>
+          <div id="progressText" class="mt-2 text-sm text-gray-600">Initializing...</div>
+        </div>
+      </div>
+
+      <div id="resultView" class="hidden">
+        <div class="flex items-start justify-between">
+          <h2 class="text-2xl font-bold text-cyan-700">🩺 AI Report Analysis</h2>
+          <span id="riskBadge" class="px-3 py-1 rounded-full text-sm font-semibold bg-emerald-100 text-emerald-700">Low Risk</span>
+        </div>
+        <div id="resultMeta" class="mt-2 text-sm text-gray-600"></div>
+        <div class="mt-6 space-y-5">
+          <div>
+            <h3 class="font-semibold text-gray-900 flex items-center gap-2">
+              <svg class="w-4 h-4 text-cyan-600" viewBox="0 0 24 24" fill="currentColor"><path d="M13 7H7v6h6V7Zm-8 8V5h10v10H5Zm12-8h2v12H7v-2h10V7Z"/></svg>
+              Summary
+            </h3>
+            <p id="summaryText" class="text-gray-700 mt-1"></p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 flex items-center gap-2">
+              <svg class="w-4 h-4 text-cyan-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 15h-2v-2h2Zm0-4h-2V7h2Z"/></svg>
+              Probable Conditions
+            </h3>
+            <ul id="conditionsList" class="list-disc pl-6 mt-1"></ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 flex items-center gap-2">
+              <svg class="w-4 h-4 text-cyan-600" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h18v2H3Zm0 6h18v2H3Zm0 6h18v2H3Z"/></svg>
+              Key Findings
+            </h3>
+            <ul id="findingsList" class="list-disc pl-6 mt-1"></ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 flex items-center gap-2">
+              <svg class="w-4 h-4 text-cyan-600" viewBox="0 0 24 24" fill="currentColor"><path d="M7 21v-8h3v8Zm7 0V3h3v18Z"/></svg>
+              Recommended Next Steps
+            </h3>
+            <ul id="stepsList" class="list-disc pl-6 mt-1"></ul>
+          </div>
+        </div>
+        <div class="mt-6 text-xs text-gray-500">Demo output for prototype purposes only. Not a medical diagnosis.</div>
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          <button id="closePopup" class="btn-primary">Close</button>
+          <button id="analyzeAnother" class="btn-outline text-cyan-700 border-cyan-700">Analyze Another</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-cyan-900 text-gray-200 mt-12 text-center py-6 text-sm">
+    © 2025 Medical Health Portal — All Rights Reserved.
+  </footer>
+
+  <!-- JS FUNCTIONALITY -->
+ <script src="script.js"></script>
+</body>
+</html>

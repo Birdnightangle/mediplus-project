@@ -1,0 +1,6 @@
+
+    /* small extra polish */
+    .card { background: white; border-radius: 12px; box-shadow: 0 6px 18px rgba(2,6,23,0.08); }
+    .pill { background: rgba(6,182,212,0.12); color:#056f77; padding:0.25rem .5rem; border-radius:999px; font-weight:600; font-size:.8rem;}
+    .tiny { font-size: .85rem; color: #6b7280; }
+    .muted { color:#6b7280; }

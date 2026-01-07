@@ -1,0 +1,37 @@
+/* --- Basic Styling Tweaks --- */
+.doctor-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Chat messages */
+.msg-ai {
+  background-color: #e0f7f9;
+  padding: 10px;
+  border-radius: 10px;
+  color: #064e52;
+}
+.msg-user {
+  background-color: #dcf1ff;
+  padding: 10px;
+  border-radius: 10px;
+  color: #053e4a;
+}
+
+/* Scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+}
+
+/* Dark mode toggle (optional) */
+body.dark {
+  background-color: #0f172a;
+  color: #f8fafc;
+}

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blood Donation Management</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medi Health Care - Login</title>
   <style>
     * {
       box-sizing: border-box;
@@ -11,337 +11,239 @@
     }
 
     body {
+      background: url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+      background-size: cover;
       margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #e0e7ff 0%, #f9f9ff 100%);
-      color: #222;
-    }
-
-    header {
-      background: linear-gradient(90deg, #0a036d, #4b4bc1);
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-    }
-
-    header p {
-      font-size: 1rem;
-      opacity: 0.9;
-      margin: 0;
-    }
-
-    nav {
-      background-color: #0a036d;
-      padding: 12px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0 18px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffeb3b;
-      text-decoration: underline;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
     .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 25px;
-      background-color: #fff;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 350px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
-    h2 {
-      color: #d32f2f;
-      font-size: 1.6rem;
-      border-bottom: 2px solid #d32f2f;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
+    .title {
+      text-align: center;
+      color: #0086b3;
+      margin-bottom: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .tab-button {
+      background: #eee;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab-button.active {
+      background: #0086b3;
+      color: #fff;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
     }
 
     form {
-      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
     }
 
     label {
-      display: block;
-      margin-bottom: 6px;
+      margin-top: 10px;
       font-weight: 600;
-      color: #333;
     }
 
-    input, select, button {
-      width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 12px;
+    input {
+      padding: 10px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      font-size: 1rem;
+      margin-top: 5px;
     }
 
-    button {
-      background-color: #d32f2f;
+    .btn {
+      margin-top: 20px;
+      background: #0086b3;
       color: white;
-      font-weight: 600;
-      border: none;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #b71c1c;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin-top: 10px;
-    }
-
-    li {
-      background-color: #f9f9f9;
-      margin-bottom: 10px;
       padding: 12px;
-      border-left: 5px solid #d32f2f;
-      border-radius: 5px;
-      font-size: 0.95rem;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .blood-img {
-      width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      max-height: 300px;
-    }
-
-    .sub-section {
-      margin-top: 25px;
-      padding: 15px;
-      background-color: #fafafa;
-      border-radius: 8px;
-    }
-
-    .sub-section h3 {
-      color: #333;
-      border-bottom: 2px solid #d32f2f;
-      padding-bottom: 5px;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      background-color: #0a036d;
-      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: bold;
       text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-      font-size: 0.9rem;
+    }
+
+    .btn:hover {
+      background: #006f99;
+    }
+
+    .switch-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .switch-link a {
+      color: #0086b3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .switch-link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Blood Donation Management System</h1>
-    <p>Organize blood donation camps and manage blood bank inventory efficiently</p>
-  </header>
-
-  <nav>
-    <a href="#" onclick="showSection('home')">🏠 Home</a>
-    <a href="#" onclick="showSection('camps')">🩸 Camps</a>
-    <a href="#" onclick="showSection('banks')">🏥 Blood Banks</a>
-  </nav>
-
   <div class="container">
-    <!-- HOME SECTION -->
-    <div id="home" class="section active">
-      <img src="https://img.freepik.com/free-vector/human-blood-donate-white-background_1308-110835.jpg?semt=ais_hybrid&w=740&q=80" alt="Blood Donation" class="blood-img">
-      <h2>Welcome</h2>
-      <p>Use this system to organize donation drives and maintain accurate blood bank records. Navigate using the menu above.</p>
+    <h1 class="title">Medi Health Care</h1>
 
-      <div class="sub-section">
-        <h3>Upcoming Blood Donation Camps</h3>
-        <ul id="homeCampList"></ul>
-      </div>
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-button active" data-tab="patient">Patient Login</button>
+      <button class="tab-button" data-tab="doctorLogin">Doctor Login</button>
+    </div>
 
-      <div class="sub-section">
-        <h3>Available Blood Bank Stock</h3>
-        <ul id="homeBankList"></ul>
+    <!-- Patient Login -->
+    <div id="patient" class="tab-content active">
+      <form id="patientForm">
+        <label>Email</label>
+        <input type="email" id="patientEmail" placeholder="Enter Email" required>
+        <label>Password</label>
+        <input type="password" id="patientPassword" placeholder="Enter Password" required>
+        <a href="index2.html" class="btn">Login</a>
+      </form>
+      <div class="switch-link">
+        <p>New User? <a href="#" id="showPatientRegister">Sign Up</a></p>
       </div>
     </div>
 
-    <!-- BLOOD DONATION CAMPS SECTION -->
-    <div id="camps" class="section">
-      <h2>Blood Donation Camps</h2>
-      <form id="campForm">
-        <label for="campName">Camp Name:</label>
-        <input type="text" id="campName" required>
-
-        <label for="campLocation">Location:</label>
-        <input type="text" id="campLocation" required>
-
-        <label for="campDate">Date:</label>
-        <input type="date" id="campDate" required>
-
-        <label for="campOrganizer">Organizer:</label>
-        <input type="text" id="campOrganizer" required>
-
-        <button type="submit">Add Camp</button>
+    <!-- Patient Registration -->
+    <div id="patientRegister" class="tab-content">
+      <form id="patientRegisterForm">
+        <label>Full Name</label>
+        <input type="text" id="patientName" placeholder="Enter Full Name" required>
+        <label>Email</label>
+        <input type="email" id="patientRegEmail" placeholder="Enter Email" required>
+        <label>Password</label>
+        <input type="password" id="patientRegPassword" placeholder="Enter Password" required>
+        <a href="index2.html" class="btn">Sign Up</a>
       </form>
-      <h3>Existing Camps</h3>
-      <ul id="campList"></ul>
+      <div class="switch-link">
+        <p>Already have an account? <a href="#" id="backToPatientLogin">Go to Login</a></p>
+      </div>
     </div>
 
-    <!-- BLOOD BANK INVENTORY SECTION -->
-    <div id="banks" class="section">
-      <h2>Blood Bank Inventory</h2>
-      <form id="bankForm">
-        <label for="hospitalName">Hospital Name:</label>
-        <input type="text" id="hospitalName" required>
-
-        <label for="bloodType">Blood Type:</label>
-        <select id="bloodType" required>
-          <option value="">Select Type</option>
-          <option value="A+">A+</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B-">B-</option>
-          <option value="AB+">AB+</option>
-          <option value="AB-">AB-</option>
-          <option value="O+">O+</option>
-          <option value="O-">O-</option>
-        </select>
-
-        <label for="quantity">Quantity (units):</label>
-        <input type="number" id="quantity" min="0" required>
-
-        <button type="submit">Add / Update Inventory</button>
+    <!-- Doctor Login -->
+    <div id="doctorLogin" class="tab-content">
+      <form id="doctorLoginForm">
+        <label>Email</label>
+        <input type="email" id="doctorLoginEmail" placeholder="Enter Email" required>
+        <label>Password</label>
+        <input type="password" id="doctorLoginPassword" placeholder="Enter Password" required>
+        <a href="index2.html" class="btn">Login</a>
       </form>
-      <h3>Current Inventory</h3>
-      <ul id="bankList"></ul>
+      <div class="switch-link">
+        <p>New Doctor? <a href="#" id="showDoctorRegister">Register Here</a></p>
+      </div>
+    </div>
+
+    <!-- Doctor Registration -->
+    <div id="doctorRegister" class="tab-content">
+      <form id="doctorRegisterForm">
+        <label>Doctor Name</label>
+        <input type="text" id="doctorName" placeholder="Enter Name" required>
+        <label>Degree</label>
+        <input type="text" id="doctorDegree" placeholder="e.g. MBBS, MD" required>
+        <label>College/University</label>
+        <input type="text" id="doctorCollege" placeholder="Where pursuing degree" required>
+        <label>Experience (Years)</label>
+        <input type="number" id="doctorExperience" min="0" required>
+        <label>Current Hospital</label>
+        <input type="text" id="doctorHospital" placeholder="Hospital Name" required>
+        <label>Mobile Number</label>
+        <input type="tel" id="doctorMobile" pattern="[0-9]{10}" placeholder="10-digit number" required>
+        <label>Email</label>
+        <input type="email" id="doctorEmail" placeholder="Enter Email" required>
+        <label>Password</label>
+        <input type="password" id="doctorPassword" placeholder="Enter Password" required>
+        <a href="index2.html" class="btn">Register</a>
+      </form>
+      <div class="switch-link">
+        <p>Already Registered? <a href="#" id="backToDoctorLogin">Go to Login</a></p>
+      </div>
     </div>
   </div>
 
-  <footer>
-    © 2025 Blood Donation Management System | All Rights Reserved
-  </footer>
-
   <script>
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(sectionId).classList.add('active');
-    }
+    const tabs = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
 
-    function loadData() {
-      const camps = JSON.parse(localStorage.getItem('camps')) || [];
-      const banks = JSON.parse(localStorage.getItem('banks')) || [];
-      displayCamps(camps);
-      displayBanks(banks);
-      updateHome(camps, banks);
-    }
+    const doctorRegister = document.getElementById('doctorRegister');
+    const doctorLogin = document.getElementById('doctorLogin');
+    const showDoctorRegister = document.getElementById('showDoctorRegister');
+    const backToDoctorLogin = document.getElementById('backToDoctorLogin');
 
-    function displayCamps(camps) {
-      const campList = document.getElementById('campList');
-      campList.innerHTML = '';
-      camps.forEach(camp => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>${camp.name}</strong> - ${camp.location} on ${camp.date} (Organizer: ${camp.organizer})`;
-        campList.appendChild(li);
+    const patientRegister = document.getElementById('patientRegister');
+    const patientLogin = document.getElementById('patient');
+    const showPatientRegister = document.getElementById('showPatientRegister');
+    const backToPatientLogin = document.getElementById('backToPatientLogin');
+
+    // Tab switching
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
       });
-    }
-
-    function displayBanks(banks) {
-      const bankList = document.getElementById('bankList');
-      bankList.innerHTML = '';
-      banks.forEach(bank => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>${bank.hospital}</strong> - ${bank.type}: ${bank.quantity} units`;
-        bankList.appendChild(li);
-      });
-    }
-
-    function updateHome(camps, banks) {
-      const homeCampList = document.getElementById('homeCampList');
-      const homeBankList = document.getElementById('homeBankList');
-      homeCampList.innerHTML = camps.length ? '' : '<li>No camps added yet.</li>';
-      homeBankList.innerHTML = banks.length ? '' : '<li>No inventory added yet.</li>';
-
-      camps.forEach(camp => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>${camp.name}</strong> - ${camp.location} on ${camp.date}`;
-        homeCampList.appendChild(li);
-      });
-
-      banks.forEach(bank => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>${bank.hospital}</strong> - ${bank.type}: ${bank.quantity} units`;
-        homeBankList.appendChild(li);
-      });
-    }
-
-    document.getElementById('campForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = campName.value;
-      const location = campLocation.value;
-      const date = campDate.value;
-      const organizer = campOrganizer.value;
-
-      const camps = JSON.parse(localStorage.getItem('camps')) || [];
-      camps.push({ name, location, date, organizer });
-      localStorage.setItem('camps', JSON.stringify(camps));
-      displayCamps(camps);
-      updateHome(camps, JSON.parse(localStorage.getItem('banks')) || []);
-      this.reset();
     });
 
-    document.getElementById('bankForm').addEventListener('submit', function(e) {
+    // Doctor Register ↔ Login
+    showDoctorRegister.addEventListener('click', (e) => {
       e.preventDefault();
-      const hospital = hospitalName.value;
-      const type = bloodType.value;
-      const quantity = quantityInput.value;
-
-      const banks = JSON.parse(localStorage.getItem('banks')) || [];
-      const existingIndex = banks.findIndex(b => b.hospital === hospital && b.type === type);
-      if (existingIndex !== -1) banks[existingIndex].quantity = quantity;
-      else banks.push({ hospital, type, quantity });
-
-      localStorage.setItem('banks', JSON.stringify(banks));
-      displayBanks(banks);
-      updateHome(JSON.parse(localStorage.getItem('camps')) || [], banks);
-      this.reset();
+      contents.forEach(content => content.classList.remove('active'));
+      doctorRegister.classList.add('active');
     });
 
-    const quantityInput = document.getElementById('quantity');
-    window.onload = loadData;
+    backToDoctorLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      contents.forEach(content => content.classList.remove('active'));
+      doctorLogin.classList.add('active');
+    });
+
+    // Patient Register ↔ Login
+    showPatientRegister.addEventListener('click', (e) => {
+      e.preventDefault();
+      contents.forEach(content => content.classList.remove('active'));
+      patientRegister.classList.add('active');
+    });
+
+    backToPatientLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      contents.forEach(content => content.classList.remove('active'));
+      patientLogin.classList.add('active');
+    });
   </script>
 </body>
 </html>
